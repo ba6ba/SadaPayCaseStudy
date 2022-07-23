@@ -14,9 +14,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding: FragmentHomeBinding by dataBinding(FragmentHomeBinding::bind)
     private val homeViewModel: HomeViewModel by viewModels()
+    private val homeItemAdapter by lazy {
+        HomeItemAdapter(this::onItemClickListener)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModel = homeViewModel
+        setBindingVariables()
+    }
+
+    private fun onItemClickListener(repoUrl: String) = Unit
+
+    private fun setBindingVariables() {
+        binding.run {
+            viewModel = homeViewModel
+            adapter = homeItemAdapter
+        }
     }
 }

@@ -9,6 +9,10 @@
             name="viewModel"
             type="com.ba6ba.sadapaycasestudy.home.presentation.HomeViewModel" />
 
+        <variable
+            name="adapter"
+            type="com.ba6ba.sadapaycasestudy.home.presentation.HomeItemAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,6 +136,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
+            app:set_paging_adapter="@{adapter}"
             app:show_on_success="@{viewModel.viewStateFlow}"
             tools:listitem="@layout/home_list_item"
             tools:visibility="gone" />

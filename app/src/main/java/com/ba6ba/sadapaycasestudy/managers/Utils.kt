@@ -1,5 +1,7 @@
 package com.ba6ba.sadapaycasestudy.managers
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -39,3 +41,6 @@ val String?.default
     get() = emptyIfNull()
 
 fun String?.default(other: String? = null) = this ?: other.default
+
+val View.inflater
+    get() = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

@@ -3,9 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="uiData"
+            type="com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/root_item"
         android:background="@drawable/transparent_ripple_item_background"
         android:padding="@dimen/_16sdp">
 
@@ -16,6 +24,7 @@
             android:fontFamily="@font/muli_bold"
             android:textColor="@color/primaryShade"
             android:textSize="@dimen/_14ssp"
+            android:text="@{uiData.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +39,7 @@
             android:maxLines="5"
             android:textColor="@color/primaryShade"
             android:textSize="@dimen/_10ssp"
+            android:text="@{uiData.description}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
@@ -44,6 +54,7 @@
             android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/muli_regular"
             android:textColor="@color/primaryShade"
+            android:text="@{uiData.languageName}"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/description"
@@ -54,6 +65,7 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginVertical="@dimen/_8sdp"
+            app:load_circular_image="@{uiData.authorImage}"
             android:background="@drawable/circle_icon_ripple_bg"
             android:backgroundTint="@color/light_grey"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +80,7 @@
             android:fontFamily="@font/muli_light"
             android:textColor="@color/primaryShade"
             android:textSize="@dimen/_10ssp"
+            android:text="@{uiData.authorName}"
             app:layout_constraintBottom_toBottomOf="@id/authorImage"
             app:layout_constraintEnd_toStartOf="@+id/repositoryWatches"
             app:layout_constraintStart_toEndOf="@id/authorImage"
@@ -83,6 +96,7 @@
             android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/muli_regular"
             android:maxLength="5"
+            android:text="@{uiData.watches}"
             android:textColor="@color/primaryShade"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="@id/authorImage"
@@ -98,6 +112,7 @@
             android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/muli_regular"
             android:maxLength="5"
+            android:text="@{uiData.stars}"
             android:textColor="@color/primaryShade"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="@id/authorImage"

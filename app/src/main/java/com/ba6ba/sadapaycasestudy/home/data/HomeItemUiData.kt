@@ -11,5 +11,13 @@ data class HomeItemUiData(
     val watches: String,
     val authorImage: String,
     val authorName: String,
-    val languageName: String
-) : Parcelable
+    val languageName: String,
+    val metadata: Metadata
+) : Parcelable {
+
+    @Parcelize
+    data class Metadata(
+        val id: Int,
+        val repoUrl: String
+    ) : Parcelable
+}
