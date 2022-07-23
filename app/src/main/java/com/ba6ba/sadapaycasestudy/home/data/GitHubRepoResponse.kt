@@ -11,7 +11,7 @@ data class GitHubRepoResponse(
 )
 
 data class RepositoryItem(
-    val id: Long?,
+    val id: Int?,
     val name: String?,
     @SerializedName("full_name")
     val fullName: String?,

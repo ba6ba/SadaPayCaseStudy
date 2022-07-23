@@ -1,46 +1,37 @@
 package com.ba6ba.sadapaycasestudy.home.domain
 
-import com.ba6ba.network.ApiResult
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.ba6ba.sadapaycasestudy.FlowUseCase
-import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
-import com.ba6ba.sadapaycasestudy.home.data.HomeRepository
 import com.ba6ba.sadapaycasestudy.home.data.RepositoryItem
-import com.ba6ba.sadapaycasestudy.managers.StringsResourceManager
-import com.ba6ba.sadapaycasestudy.managers.UiError
-import com.ba6ba.sadapaycasestudy.managers.ViewState
-import com.ba6ba.sadapaycasestudy.managers.default
+import com.ba6ba.sadapaycasestudy.managers.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-interface HomeUseCase : FlowUseCase<Int, ViewState<List<HomeItemUiData>>> {
+interface HomeUseCase : FlowUseCase<Unit, PagingData<HomeItemUiData>> {
     override fun dispatcher(): CoroutineDispatcher = Dispatchers.IO
 }
 
 class DefaultHomeUseCase @Inject constructor(
-    private val homeRepository: HomeRepository,
-    private val stringsResourceManager: StringsResourceManager
+    private val homePagingSourceProvider: HomePagingSourceProvider
 ) : HomeUseCase {
-    override fun execute(parameters: Int): Flow<ViewState<List<HomeItemUiData>>> =
-        flow {
-            emit(ViewState.Loading)
-            when (val response = homeRepository.getRepositories(parameters)) {
-                is ApiResult.Success ->
-                    emit(ViewState.Success(
-                        response.data.items.orEmpty().map {
-                            mapRepoToHomeUiData(it)
-                        }
-                    ))
-
-                is ApiResult.Failure ->
-                    emit(
-                        ViewState.Error(
-                            UiError(stringsResourceManager.getString(R.string.error_screen_description))
-                        )
-                    )
+    override fun execute(parameters: Unit): Flow<PagingData<HomeItemUiData>> =
+        Pager(
+            config = PagingConfig(Constants.PAGE_LIMIT),
+            pagingSourceFactory = {
+                homePagingSourceProvider.get()
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { repositoryItem ->
+                mapRepoToHomeUiData(
+                    repositoryItem
+                )
             }
         }
 
@@ -53,6 +44,10 @@ class DefaultHomeUseCase @Inject constructor(
             watches = repositoryItem.watchers.default().toString(),
             authorImage = repositoryItem.owner?.imageUrl.default,
             authorName = repositoryItem.owner?.userName.default,
+            metadata = HomeItemUiData.Metadata(
+                repositoryItem.id.default(),
+                repositoryItem.repoUrl.default
+            )
         )
     }
 }
