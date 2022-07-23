@@ -4,7 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import com.ba6ba.sadapaycasestudy.ViewState
+import com.ba6ba.sadapaycasestudy.managers.ViewState
 
 @BindingAdapter(value = ["toggle_visibility"])
 fun View.toggleVisibility(value: Boolean) {

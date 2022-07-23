@@ -19,9 +19,9 @@ data class RepositoryItem(
     val repoUrl: String?,
     val description: String?,
     @SerializedName("stargazers_count")
-    val stars: Long?,
+    val stars: Int?,
     val language: String?,
-    val watchers: Long?,
+    val watchers: Int?,
     val owner: RepositoryOwner? = null
 )
 

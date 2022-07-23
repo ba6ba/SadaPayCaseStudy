@@ -3,7 +3,9 @@ package com.ba6ba.sadapaycasestudy.home.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ba6ba.sadapaycasestudy.R
-import com.ba6ba.sadapaycasestudy.ViewState
+import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
+import com.ba6ba.sadapaycasestudy.home.domain.HomeUseCase
+import com.ba6ba.sadapaycasestudy.managers.ViewState
 import com.ba6ba.sadapaycasestudy.managers.LightDarkModeManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -13,12 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val lightDarkModeManager: LightDarkModeManager
+    private val lightDarkModeManager: LightDarkModeManager,
+    private val homeUseCase: HomeUseCase
 ) : ViewModel() {
 
-    val viewStateFlow: StateFlow<ViewState>
+    val viewStateFlow: StateFlow<ViewState<List<HomeItemUiData>>>
         get() = _viewStateFlow
-    private val _viewStateFlow: MutableStateFlow<ViewState> by lazy {
+    private val _viewStateFlow: MutableStateFlow<ViewState<List<HomeItemUiData>>> by lazy {
         MutableStateFlow(ViewState.Idle)
     }
 
