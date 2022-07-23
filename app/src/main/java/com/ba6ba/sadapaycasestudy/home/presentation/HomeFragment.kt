@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.managers.dataBinding
 import com.ba6ba.sadapaycasestudy.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -21,6 +23,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBindingVariables()
+        lifecycleScope.launchWhenStarted {
+            homeViewModel.collectPagingData().collectLatest { pagingData ->
+                homeItemAdapter.submitData(pagingData)
+            }
+        }
+        homeItemAdapter.addLoadStateListener { combinedLoadStates ->
+            homeViewModel.processCombinedStates(combinedLoadStates)
+        }
     }
 
     private fun onItemClickListener(repoUrl: String) = Unit

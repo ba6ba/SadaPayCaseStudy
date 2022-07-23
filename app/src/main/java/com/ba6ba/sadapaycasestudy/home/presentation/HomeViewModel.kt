@@ -2,11 +2,17 @@ package com.ba6ba.sadapaycasestudy.home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
 import com.ba6ba.sadapaycasestudy.home.domain.HomeUseCase
 import com.ba6ba.sadapaycasestudy.managers.ViewState
 import com.ba6ba.sadapaycasestudy.managers.LightDarkModeManager
+import com.ba6ba.sadapaycasestudy.managers.UiError
+import com.ba6ba.sadapaycasestudy.managers.default
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -19,9 +25,9 @@ class HomeViewModel @Inject constructor(
     private val homeUseCase: HomeUseCase
 ) : ViewModel() {
 
-    val viewStateFlow: StateFlow<ViewState<List<HomeItemUiData>>>
+    val viewStateFlow: StateFlow<ViewState<Unit>>
         get() = _viewStateFlow
-    private val _viewStateFlow: MutableStateFlow<ViewState<List<HomeItemUiData>>> by lazy {
+    private val _viewStateFlow: MutableStateFlow<ViewState<Unit>> by lazy {
         MutableStateFlow(ViewState.Idle)
     }
 
@@ -32,13 +38,11 @@ class HomeViewModel @Inject constructor(
     }
 
     init {
-        viewModelScope.launch {
-            delay(5000L)
-            _viewStateFlow.value = ViewState.Loading
-
-        }
         setPersistedDisplayMode()
     }
+
+    fun collectPagingData(): Flow<PagingData<HomeItemUiData>> =
+        homeUseCase(Unit).cachedIn(viewModelScope)
 
     private fun setPersistedDisplayMode() {
         lightDarkModeManager.setCurrentMode()
@@ -55,4 +59,12 @@ class HomeViewModel @Inject constructor(
         updateDayNightIcon()
     }
 
+    fun processCombinedStates(combinedLoadStates: CombinedLoadStates) {
+        when (val state = combinedLoadStates.refresh) {
+            is LoadState.Loading -> _viewStateFlow.value = ViewState.Loading
+            is LoadState.Error -> _viewStateFlow.value =
+                ViewState.Error(UiError(message = state.error.message.default))
+            is LoadState.NotLoading -> _viewStateFlow.value = ViewState.Success(Unit)
+        }
+    }
 }
