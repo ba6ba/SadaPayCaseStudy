@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/transparent_ripple_item_background"
+        android:padding="@dimen/_16sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_bold"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_regular"
+            android:maxLines="5"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Shows top repositories in terms of stars in Android (kotlin)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/languageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_diamond"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/muli_regular"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            tools:text="Kotlin" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/authorImage"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:background="@drawable/circle_icon_ripple_bg"
+            android:backgroundTint="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/languageName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/authorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:fontFamily="@font/muli_light"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@id/authorImage"
+            app:layout_constraintEnd_toStartOf="@+id/repositoryWatches"
+            app:layout_constraintStart_toEndOf="@id/authorImage"
+            tools:text="Abdul Basit Malik" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/repositoryWatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:drawableStart="@drawable/ic_watch"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/muli_regular"
+            android:maxLength="5"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/authorImage"
+            app:layout_constraintEnd_toStartOf="@id/repositoryStars"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/repositoryStars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/muli_regular"
+            android:maxLength="5"
+            android:textColor="@color/primaryShade"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/authorImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="20" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

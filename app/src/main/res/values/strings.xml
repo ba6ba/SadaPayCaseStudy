@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SadaPay Case Study</string>
+    <string name="trending">Trending</string>
+    <string name="error_screen_title">Something went wrong…</string>
+    <string name="error_screen_description">An alien is blocking your signal</string>
+    <string name="retry">Retry</string>
 </resources>

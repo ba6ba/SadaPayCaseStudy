@@ -6,10 +6,10 @@ buildscript {
 }
 
 plugins {
-    id(Plugins.androidApplication) version Versions.gradle apply false
-    id(Plugins.androidLibrary) version Versions.gradle apply false
-    id(Plugins.kotlinAndroid) version Versions.kotlin apply false
-    id(Plugins.kotlinJvm) version Versions.kotlin apply false
+    id(Plugins.androidApplication) version (Versions.gradle) apply (false)
+    id(Plugins.androidLibrary) version (Versions.gradle) apply (false)
+    id(Plugins.kotlinAndroid) version (Versions.kotlin) apply (false)
+    id(Plugins.kotlinJvm) version (Versions.kotlin) apply (false)
 }
 
 tasks.register("clean", Delete::class) {

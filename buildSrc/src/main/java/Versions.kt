@@ -2,10 +2,9 @@ object Versions {
 
     const val gradle = "7.2.1"
     const val kotlin = "1.6.10"
-    const val googleServicesPlugin = "4.3.3"
 
     const val coreKtx = "1.7.0"
-    const val appcompat = "1.3.1"
+    const val appcompat = "1.4.2"
     const val materialDesignNew = "1.6.1"
 
     const val dagger_hilt = "2.38.1"
@@ -17,11 +16,12 @@ object Versions {
     const val coil = "1.4.0"
 
     const val firebase = "17.4.3"
-    const val constraintLayoutVersion = "2.1.1"
+    const val constraintLayoutVersion = "2.1.4"
     const val recyclerView = "1.2.1"
 
     const val navigation = "2.4.0"
     const val dimensions = "1.0.6"
+    const val dimensionsSsp = "1.1.0"
 
     const val activityKTXVersion = "1.4.0"
     const val coreKTXVersion = "1.8.0"

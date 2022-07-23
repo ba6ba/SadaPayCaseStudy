@@ -23,6 +23,7 @@ object Dependencies {
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     val dimensions = "com.intuit.sdp:sdp-android:${Versions.dimensions}"
+    val dimensionsSsp = "com.intuit.ssp:ssp-android:${Versions.dimensionsSsp}"
 
     val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKTXVersion}"
     val coreKtx = "androidx.core:core-ktx:${Versions.coreKTXVersion}"

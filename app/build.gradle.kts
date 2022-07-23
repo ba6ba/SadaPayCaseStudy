@@ -65,6 +65,7 @@ dependencies {
     implementation(Dependencies.navigationUi)
     implementation(Dependencies.hiltNavigationFragment)
     implementation(Dependencies.dimensions)
+    implementation(Dependencies.dimensionsSsp)
 
     implementation(Dependencies.lifeCycleRuntimeExtensions)
     implementation(Dependencies.lifeCycleViewModel)
