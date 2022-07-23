@@ -24,21 +24,33 @@
             android:padding="@dimen/_12sdp"
             android:text="@string/trending"
             android:textColor="@color/primaryShade"
-            app:show_on_success="@{viewModel.viewStateFlow}"
             android:textSize="@dimen/_12ssp"
             app:fontFamily="@font/muli_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:show_on_success="@{viewModel.viewStateFlow}"
             app:tint="@color/primaryShade" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:background="@drawable/transparent_ripple_item_background"
+            android:onClick="@{() -> viewModel.onDayNightButtonClick()}"
+            android:padding="@dimen/_8sdp"
+            app:image_drawable_resource="@{viewModel.dayNightIconResource}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_night_mode" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/light_grey"
-            app:show_on_success="@{viewModel.viewStateFlow}"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:show_on_success="@{viewModel.viewStateFlow}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/failureLayout"
@@ -54,8 +66,8 @@
                 android:id="@+id/retryAnimation"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="@dimen/_24sdp"
                 android:layout_margin="@dimen/_16sdp"
+                android:padding="@dimen/_24sdp"
                 app:layout_constraintBottom_toTopOf="@id/errorTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -69,12 +81,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
                 android:fontFamily="@font/muli_semibold"
                 android:gravity="center"
                 android:text="@string/error_screen_title"
                 android:textColor="@color/primaryShade"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_16ssp"
                 app:layout_constraintBottom_toTopOf="@+id/errorDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -84,8 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_32sdp"
                 android:fontFamily="@font/muli_regular"
                 android:gravity="center"
                 android:text="@string/error_screen_description"
@@ -116,14 +127,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            tools:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:show_on_success="@{viewModel.viewStateFlow}"
-            tools:listitem="@layout/home_list_item" />
+            tools:listitem="@layout/home_list_item"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,4 +1,4 @@
-package com.ba6ba.sadapaycasestudy
+package com.ba6ba.sadapaycasestudy.managers
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
@@ -8,6 +8,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
+
+const val EMPTY_STRING = ""
 
 fun <T : ViewDataBinding> Fragment.dataBinding(factory: (View) -> T): ReadOnlyProperty<Fragment, T> =
     object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
@@ -27,3 +29,13 @@ fun <T : ViewDataBinding> Fragment.dataBinding(factory: (View) -> T): ReadOnlyPr
             binding = null
         }
     }
+
+fun Int?.default(other: Int? = null): Int =
+    this ?: other ?: 0
+
+fun String?.emptyIfNull() = this ?: EMPTY_STRING
+
+val String?.default
+    get() = emptyIfNull()
+
+fun String?.default(other: String? = null) = this ?: other.default

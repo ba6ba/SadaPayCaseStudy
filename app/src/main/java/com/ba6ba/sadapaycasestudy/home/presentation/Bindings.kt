@@ -1,8 +1,10 @@
-package com.ba6ba.sadapaycasestudy
+package com.ba6ba.sadapaycasestudy.home.presentation
 
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import com.ba6ba.sadapaycasestudy.ViewState
 
 @BindingAdapter(value = ["toggle_visibility"])
 fun View.toggleVisibility(value: Boolean) {
@@ -22,4 +24,9 @@ fun View.showOnError(viewState: ViewState) {
 @BindingAdapter(value = ["show_on_success"])
 fun View.showOnSuccess(viewState: ViewState) {
     toggleVisibility(viewState is ViewState.Success<*>)
+}
+
+@BindingAdapter(value = ["image_drawable_resource"])
+fun AppCompatImageView.updateImageDrawable(imageDrawableResource: Int) {
+    setImageResource(imageDrawableResource)
 }

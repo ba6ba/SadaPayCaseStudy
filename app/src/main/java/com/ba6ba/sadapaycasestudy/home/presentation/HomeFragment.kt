@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ba6ba.sadapaycasestudy.R
-import com.ba6ba.sadapaycasestudy.dataBinding
+import com.ba6ba.sadapaycasestudy.managers.dataBinding
 import com.ba6ba.sadapaycasestudy.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
