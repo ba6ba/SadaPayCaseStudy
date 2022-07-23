@@ -11,4 +11,7 @@ interface NetworkModule {
 
     @Binds
     fun bindOKHttpClientProvider(default: DefaultOKHttpClientProvider): OKHttpClientProvider
+
+    @Binds
+    fun bindRetrofitProvider(default: DefaultRetrofitProvider): RetrofitProvider
 }
