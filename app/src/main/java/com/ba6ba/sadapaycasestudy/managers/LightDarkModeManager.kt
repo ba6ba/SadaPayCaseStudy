@@ -21,7 +21,7 @@ class DefaultLightDarkModeManager @Inject constructor(
     }
 
     override fun isDarkModeEnabled(): Boolean {
-        return sharedPreferencesManager.getCurrentDisplayMode() == AppCompatDelegate.MODE_NIGHT_YES
+        return sharedPreferencesManager.getCurrentDisplayMode() == DayNightModeConstants.NIGHT_MODE
     }
 
     override fun setCurrentMode() {
@@ -33,12 +33,12 @@ class DefaultLightDarkModeManager @Inject constructor(
     }
 
     private fun enableDarkMode() {
-        sharedPreferencesManager.setCurrentDisplayMode(AppCompatDelegate.MODE_NIGHT_YES)
+        sharedPreferencesManager.setCurrentDisplayMode(DayNightModeConstants.NIGHT_MODE)
         setMode()
     }
 
     private fun enableLightMode() {
-        sharedPreferencesManager.setCurrentDisplayMode(AppCompatDelegate.MODE_NIGHT_NO)
+        sharedPreferencesManager.setCurrentDisplayMode(DayNightModeConstants.DAY_MODE)
         setMode()
     }
 

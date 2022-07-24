@@ -3,7 +3,6 @@ package com.ba6ba.sadapaycasestudy.home.domain
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.ba6ba.sadapaycasestudy.BaseTest
-import com.ba6ba.sadapaycasestudy.collectToList
 import com.ba6ba.sadapaycasestudy.home.data.HomePagingSourceProvider
 import com.ba6ba.sadapaycasestudy.home.data.RepositoryItem
 import com.nhaarman.mockitokotlin2.whenever
