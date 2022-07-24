@@ -10,5 +10,5 @@ object AndroidConfig {
     const val versionName = "$versionMajor.$versionMinor.$versionPatch"
     const val versionCode = 100
 
-    const val androidTestInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    const val androidTestInstrumentationRunner = "com.ba6ba.sadapaycasestudy.utils.SadaPayCaseStudyTestRunner"
 }

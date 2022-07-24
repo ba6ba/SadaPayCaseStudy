@@ -41,4 +41,12 @@ object Versions {
     const val coroutinesCoreTest = "1.4.2"
     const val mockitoCore = "3.7.7"
     const val mockitoInline = "3.0.0"
+    const val jUnit = "4.13.2"
+    const val jUnitExtension = "1.1.3"
+    const val espresso = "3.3.0"
+    const val fragmentTesting = "1.5.0-rc01"
+    const val testCore = "1.4.1-alpha07"
+    const val daggerHiltTesting = "2.38.1"
+    const val testRunner = "1.0.2"
+    const val testRules = "1.0.2"
 }

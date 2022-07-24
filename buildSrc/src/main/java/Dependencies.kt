@@ -58,4 +58,13 @@ object Dependencies {
     const val coroutinesCoreTest = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreTest}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCore}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
+    const val jUnit = "junit:junit:${Versions.jUnit}"
+    const val jUnitExtension = "androidx.test.ext:junit:${Versions.jUnitExtension}"
+    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+    const val testCore = "androidx.test:core:${Versions.testCore}"
+    const val daggerHiltTesting = "com.google.dagger:hilt-android-testing:${Versions.daggerHiltTesting}"
+    const val testRunner = "com.android.support.test:runner:${Versions.testRunner}"
+    const val testRules = "com.android.support.test:rules:${Versions.testRules}"
 }
