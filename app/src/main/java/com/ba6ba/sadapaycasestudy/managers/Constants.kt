@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 object Constants {
     const val PAGE_LIMIT = 50
     const val DEFAULT_PAGE = 1
+    const val TEST_DELAY = 6000L
 }
 
 object QueryConstants {

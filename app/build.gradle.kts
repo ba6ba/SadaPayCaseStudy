@@ -85,6 +85,7 @@ dependencies {
     kapt(Dependencies.hiltCompiler)
 
     testImplementation(Dependencies.androidXTesting)
+    androidTestImplementation(Dependencies.androidXTesting)
     testImplementation(Dependencies.mockitoKotlin)
     testImplementation(Dependencies.coroutinesTest)
     testImplementation(Dependencies.coroutinesCoreTest)
