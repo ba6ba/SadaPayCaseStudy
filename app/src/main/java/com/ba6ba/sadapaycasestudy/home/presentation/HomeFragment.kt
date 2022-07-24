@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.managers.dataBinding
 import com.ba6ba.sadapaycasestudy.databinding.FragmentHomeBinding
+import com.ba6ba.sadapaycasestudy.managers.browseUrl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,7 +40,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun onItemClickListener(repoUrl: String) = Unit
+    private fun onItemClickListener(repoUrl: String) {
+        requireContext().browseUrl(repoUrl)
+    }
 
     private fun setBindingVariables() {
         binding.run {

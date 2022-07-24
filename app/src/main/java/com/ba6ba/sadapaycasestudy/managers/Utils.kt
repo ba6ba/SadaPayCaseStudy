@@ -1,6 +1,8 @@
 package com.ba6ba.sadapaycasestudy.managers
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
@@ -44,3 +46,7 @@ fun String?.default(other: String? = null) = this ?: other.default
 
 val View.inflater
     get() = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+fun Context.browseUrl(url: String?) {
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+}

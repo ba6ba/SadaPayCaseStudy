@@ -8,7 +8,7 @@ import com.ba6ba.sadapaycasestudy.databinding.HomeListItemBinding
 import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
 import com.ba6ba.sadapaycasestudy.managers.inflater
 
-class HomeItemAdapter(val itemClickListener: (String) -> Unit) :
+class HomeItemAdapter(private val itemClickListener: (String) -> Unit) :
     PagingDataAdapter<HomeItemUiData, HomeItemViewHolder>(HomeItemDiffUtil) {
 
     override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
