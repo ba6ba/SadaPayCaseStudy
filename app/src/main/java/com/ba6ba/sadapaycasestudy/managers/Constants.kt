@@ -3,7 +3,7 @@ package com.ba6ba.sadapaycasestudy.managers
 import androidx.appcompat.app.AppCompatDelegate
 
 object Constants {
-    const val PAGE_LIMIT = 10
+    const val PAGE_LIMIT = 50
     const val DEFAULT_PAGE = 1
 }
 

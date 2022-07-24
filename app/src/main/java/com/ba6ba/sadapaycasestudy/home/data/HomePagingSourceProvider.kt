@@ -16,9 +16,6 @@ class DefaultHomePagingSourceProvider @Inject constructor(
 ) : HomePagingSourceProvider {
     override fun get(): PagingSource<Int, RepositoryItem> {
         return object : PagingSource<Int, RepositoryItem>() {
-
-            override fun getRefreshKey(state: PagingState<Int, RepositoryItem>): Int? = null
-
             override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RepositoryItem> {
                 val loadResult: LoadResult<Int, RepositoryItem>
                 val page = params.key ?: Constants.DEFAULT_PAGE
@@ -42,6 +39,8 @@ class DefaultHomePagingSourceProvider @Inject constructor(
                 }
                 return loadResult
             }
+
+            override fun getRefreshKey(state: PagingState<Int, RepositoryItem>): Int? = null
         }
     }
 

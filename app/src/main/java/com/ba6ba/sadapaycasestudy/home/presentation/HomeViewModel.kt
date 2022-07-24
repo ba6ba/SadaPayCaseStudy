@@ -1,6 +1,5 @@
 package com.ba6ba.sadapaycasestudy.home.presentation
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.CombinedLoadStates
@@ -10,10 +9,7 @@ import androidx.paging.cachedIn
 import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
 import com.ba6ba.sadapaycasestudy.home.domain.HomeUseCase
-import com.ba6ba.sadapaycasestudy.managers.LightDarkModeManager
-import com.ba6ba.sadapaycasestudy.managers.UiError
-import com.ba6ba.sadapaycasestudy.managers.ViewState
-import com.ba6ba.sadapaycasestudy.managers.default
+import com.ba6ba.sadapaycasestudy.managers.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,11 +53,43 @@ class HomeViewModel @Inject constructor(
     }
 
     fun processCombinedStates(combinedLoadStates: CombinedLoadStates) {
-        _viewStateFlow.value = when (val state = combinedLoadStates.refresh) {
-            is LoadState.Loading -> ViewState.Loading
-            is LoadState.Error ->
-                ViewState.Error(UiError(message = state.error.message.default))
-            is LoadState.NotLoading -> ViewState.Success(Unit)
+        _viewStateFlow.value = if (hasErrorInAppendOrPrepend(combinedLoadStates)) {
+            ViewState.Error(UiError(message = getErrorFromAppendOrPrepend(combinedLoadStates)))
+        } else {
+            when (val state = combinedLoadStates.refresh) {
+                is LoadState.Loading -> ViewState.Loading
+                is LoadState.Error ->
+                    ViewState.Error(UiError(message = state.error.message.default))
+                is LoadState.NotLoading -> ViewState.Success(Unit)
+            }
         }
+    }
+
+    private fun hasErrorInAppendOrPrepend(combinedLoadStates: CombinedLoadStates): Boolean {
+        return when {
+            combinedLoadStates.prepend is LoadState.Error -> true
+            combinedLoadStates.append is LoadState.Error -> true
+            combinedLoadStates.source.append is LoadState.Error -> true
+            combinedLoadStates.source.prepend is LoadState.Error -> true
+            else -> false
+        }
+    }
+
+    private fun getErrorFromAppendOrPrepend(combinedLoadStates: CombinedLoadStates): String {
+        return when {
+            combinedLoadStates.prepend is LoadState.Error ->
+                (combinedLoadStates.prepend as LoadState.Error).error.message
+
+            combinedLoadStates.append is LoadState.Error ->
+                (combinedLoadStates.append as LoadState.Error).error.message
+
+            combinedLoadStates.source.append is LoadState.Error ->
+                (combinedLoadStates.source.append as LoadState.Error).error.message
+
+            combinedLoadStates.source.prepend is LoadState.Error ->
+                (combinedLoadStates.source.prepend as LoadState.Error).error.message
+
+            else -> EMPTY_STRING
+        }.default
     }
 }

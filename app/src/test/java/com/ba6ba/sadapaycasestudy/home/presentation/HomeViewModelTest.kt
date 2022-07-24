@@ -137,6 +137,82 @@ class HomeViewModelTest : BaseTest() {
     }
 
     @Test
+    fun `verify view state on process combined state for error for prepend`() {
+        val message = "some error occurred so error view must be shown"
+        val refreshLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val appendLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val prependLoadState = LoadState.Error(Throwable(message))
+        homeViewModel.processCombinedStates(
+            CombinedLoadStates(
+                refresh = refreshLoadState,
+                append = appendLoadState,
+                prepend = prependLoadState,
+                mediator = null,
+                source = LoadStates(refreshLoadState, prependLoadState, appendLoadState)
+            )
+        )
+
+        assertEquals(homeViewModel.viewStateFlow.value, ViewState.Error(UiError(message = message)))
+    }
+
+    @Test
+    fun `verify view state on process combined state for error for source-prepend`() {
+        val message = "some error occurred so error view must be shown"
+        val refreshLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val appendLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val prependLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        homeViewModel.processCombinedStates(
+            CombinedLoadStates(
+                refresh = refreshLoadState,
+                append = appendLoadState,
+                prepend = LoadState.Error(Throwable(message)),
+                mediator = null,
+                source = LoadStates(refreshLoadState, prependLoadState, appendLoadState)
+            )
+        )
+
+        assertEquals(homeViewModel.viewStateFlow.value, ViewState.Error(UiError(message = message)))
+    }
+
+    @Test
+    fun `verify view state on process combined state for error for append`() {
+        val message = "some error occurred so error view must be shown"
+        val refreshLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val appendLoadState = LoadState.Error(Throwable(message))
+        val prependLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        homeViewModel.processCombinedStates(
+            CombinedLoadStates(
+                refresh = refreshLoadState,
+                append = appendLoadState,
+                prepend = prependLoadState,
+                mediator = null,
+                source = LoadStates(refreshLoadState, prependLoadState, appendLoadState)
+            )
+        )
+
+        assertEquals(homeViewModel.viewStateFlow.value, ViewState.Error(UiError(message = message)))
+    }
+
+    @Test
+    fun `verify view state on process combined state for error for source-append`() {
+        val message = "some error occurred so error view must be shown"
+        val refreshLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val appendLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        val prependLoadState = LoadState.NotLoading(endOfPaginationReached = false)
+        homeViewModel.processCombinedStates(
+            CombinedLoadStates(
+                refresh = refreshLoadState,
+                append = LoadState.Error(Throwable(message)),
+                prepend = prependLoadState,
+                mediator = null,
+                source = LoadStates(refreshLoadState, prependLoadState, appendLoadState)
+            )
+        )
+
+        assertEquals(homeViewModel.viewStateFlow.value, ViewState.Error(UiError(message = message)))
+    }
+
+    @Test
     fun `verify collect paging data stream`() = runTest {
         whenever(homeUseCase(Unit)).thenReturn(flowOf(PagingData.empty()))
 
