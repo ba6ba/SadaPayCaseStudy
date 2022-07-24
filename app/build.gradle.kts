@@ -78,6 +78,8 @@ dependencies {
     implementation(Dependencies.coroutines)
     implementation(Dependencies.coroutinesAndroid)
     implementation(Dependencies.lottie)
+    implementation(Dependencies.facebookShimmer)
+    implementation(Dependencies.swipeRefreshLayout)
 
     kapt(Dependencies.lifeCycleCompiler)
     kapt(Dependencies.hiltCompiler)

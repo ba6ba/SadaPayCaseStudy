@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface HomeApiService {
 
-    @GET("basit/search/repositories")
+    @GET("search/repositories")
     suspend fun getRepositories(
         @Query("page") page: Int,
         @Query("q") query: String = QueryConstants.LANGUAGE,

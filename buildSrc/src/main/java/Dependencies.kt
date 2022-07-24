@@ -49,6 +49,8 @@ object Dependencies {
 
     const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val facebookShimmer  = "com.facebook.shimmer:shimmer:${Versions.facebookShimmer}"
+    const val swipeRefreshLayout  = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 
     const val androidXTesting = "androidx.arch.core:core-testing:${Versions.androidXTesting}"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"

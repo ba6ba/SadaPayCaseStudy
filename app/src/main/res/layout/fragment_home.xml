@@ -15,133 +15,179 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/secondaryShade">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/_12sdp"
-            android:text="@string/trending"
-            android:textColor="@color/primaryShade"
-            android:textSize="@dimen/_12ssp"
-            app:fontFamily="@font/muli_bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:show_on_success="@{viewModel.viewStateFlow}"
-            app:tint="@color/primaryShade" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_margin="@dimen/_4sdp"
-            android:background="@drawable/transparent_ripple_item_background"
-            android:onClick="@{() -> viewModel.onDayNightButtonClick()}"
-            android:padding="@dimen/_8sdp"
-            app:image_drawable_resource="@{viewModel.dayNightIconResource}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_night_mode" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/light_grey"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:show_on_success="@{viewModel.viewStateFlow}" />
+        app:on_refresh="@{() -> adapter.refresh()}"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/failureLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            app:show_on_error="@{viewModel.viewStateFlow}">
+            android:layout_height="match_parent"
+            android:background="@color/secondaryShade">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/retryAnimation"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/_16sdp"
-                android:padding="@dimen/_24sdp"
-                app:layout_constraintBottom_toTopOf="@id/errorTitle"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/trending"
+                android:textColor="@color/primaryShade"
+                android:textSize="@dimen/_12ssp"
+                app:fontFamily="@font/muli_bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/retry_animation" />
+                app:show_on_success="@{viewModel.viewStateFlow}"
+                app:tint="@color/primaryShade" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/errorTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:fontFamily="@font/muli_semibold"
-                android:gravity="center"
-                android:text="@string/error_screen_title"
-                android:textColor="@color/primaryShade"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintBottom_toTopOf="@+id/errorDescription"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_margin="@dimen/_4sdp"
+                android:background="@drawable/transparent_ripple_item_background"
+                android:onClick="@{() -> viewModel.onDayNightButtonClick()}"
+                android:padding="@dimen/_8sdp"
+                app:image_drawable_resource="@{viewModel.dayNightIconResource}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_night_mode" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/errorDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/_32sdp"
-                android:fontFamily="@font/muli_regular"
-                android:gravity="center"
-                android:text="@string/error_screen_description"
-                android:textColor="@color/primaryShade"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toTopOf="@+id/retryButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/retryButton"
+            <View
+                android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_38sdp"
-                android:layout_margin="@dimen/_16sdp"
-                android:background="@drawable/retry_button_ripple_background"
-                android:fontFamily="@font/muli_regular"
-                android:gravity="center"
-                android:text="@string/retry"
-                android:textColor="@color/secondaryShade"
-                android:textSize="@dimen/_12sdp"
-                android:onClick="@{() -> adapter.retry()}"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:show_on_success="@{viewModel.viewStateFlow}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/failureLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:textAllCaps="false" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                app:show_on_error="@{viewModel.viewStateFlow}">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/retryAnimation"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:padding="@dimen/_24sdp"
+                    app:layout_constraintBottom_toTopOf="@id/errorTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/retry_animation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/errorTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/muli_semibold"
+                    android:gravity="center"
+                    android:text="@string/error_screen_title"
+                    android:textColor="@color/primaryShade"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintBottom_toTopOf="@+id/errorDescription"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/errorDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_32sdp"
+                    android:fontFamily="@font/muli_regular"
+                    android:gravity="center"
+                    android:text="@string/error_screen_description"
+                    android:textColor="@color/primaryShade"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/retryButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/retryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:background="@drawable/retry_button_ripple_background"
+                    android:fontFamily="@font/muli_regular"
+                    android:gravity="center"
+                    android:onClick="@{() -> adapter.retry()}"
+                    android:text="@string/retry"
+                    android:textColor="@color/secondaryShade"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:textAllCaps="false" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/items_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                app:set_paging_adapter="@{adapter}"
+                android:scrollbars="vertical"
+                android:scrollbarStyle="insideInset"
+                android:scrollbarSize="@dimen/_4sdp"
+                app:add_item_decoration="@{null}"
+                app:show_on_success="@{viewModel.viewStateFlow}"
+                tools:listitem="@layout/home_list_item"
+                tools:visibility="gone" />
+
+            <LinearLayout
+                show_on_loading="@{viewModel.viewStateFlow}"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider">
+
+                <include
+                    layout="@layout/home_list_skeleton_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/home_list_skeleton_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp" />
+
+                <include
+                    layout="@layout/home_list_skeleton_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp" />
+
+                <include
+                    layout="@layout/home_list_skeleton_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/items_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            app:set_paging_adapter="@{adapter}"
-            app:show_on_success="@{viewModel.viewStateFlow}"
-            tools:listitem="@layout/home_list_item"
-            tools:visibility="gone" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

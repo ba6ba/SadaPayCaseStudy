@@ -1,11 +1,9 @@
-package com.ba6ba.sadapaycasestudy.home.domain
+package com.ba6ba.sadapaycasestudy.home.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.ba6ba.network.ApiResult
 import com.ba6ba.sadapaycasestudy.R
-import com.ba6ba.sadapaycasestudy.home.data.HomeRepository
-import com.ba6ba.sadapaycasestudy.home.data.RepositoryItem
 import com.ba6ba.sadapaycasestudy.managers.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -18,6 +16,7 @@ class DefaultHomePagingSourceProvider @Inject constructor(
 ) : HomePagingSourceProvider {
     override fun get(): PagingSource<Int, RepositoryItem> {
         return object : PagingSource<Int, RepositoryItem>() {
+
             override fun getRefreshKey(state: PagingState<Int, RepositoryItem>): Int? = null
 
             override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RepositoryItem> {
@@ -51,7 +50,4 @@ class DefaultHomePagingSourceProvider @Inject constructor(
 
     private fun getNextKey(page: Int, currentFetchedItemsCount: Int): Int? =
         if (currentFetchedItemsCount < Constants.PAGE_LIMIT) null else page.inc()
-
-    private fun <K : Any, V : Any> emptyLoadResult() =
-        PagingSource.LoadResult.Page<K, V>(emptyList(), null, null, 0, 0)
 }

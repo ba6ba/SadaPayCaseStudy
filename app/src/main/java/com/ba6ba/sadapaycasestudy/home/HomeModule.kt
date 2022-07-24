@@ -4,9 +4,9 @@ import com.ba6ba.network.RetrofitProvider
 import com.ba6ba.sadapaycasestudy.home.data.DefaultHomeRepository
 import com.ba6ba.sadapaycasestudy.home.data.HomeApiService
 import com.ba6ba.sadapaycasestudy.home.data.HomeRepository
-import com.ba6ba.sadapaycasestudy.home.domain.DefaultHomePagingSourceProvider
+import com.ba6ba.sadapaycasestudy.home.data.DefaultHomePagingSourceProvider
 import com.ba6ba.sadapaycasestudy.home.domain.DefaultHomeUseCase
-import com.ba6ba.sadapaycasestudy.home.domain.HomePagingSourceProvider
+import com.ba6ba.sadapaycasestudy.home.data.HomePagingSourceProvider
 import com.ba6ba.sadapaycasestudy.home.domain.HomeUseCase
 import dagger.Binds
 import dagger.Module

@@ -32,6 +32,8 @@ object Versions {
     const val lifeCycle = "2.4.0"
     const val paging = "3.0.0"
     const val lottie = "4.2.2"
+    const val facebookShimmer = "0.5.0"
+    const val swipeRefreshLayout = "1.1.0"
 
     const val mockitoKotlin = "2.2.0"
     const val androidXTesting = "2.1.0"

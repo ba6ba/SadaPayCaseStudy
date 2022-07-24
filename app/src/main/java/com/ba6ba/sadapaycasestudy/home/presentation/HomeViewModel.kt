@@ -9,14 +9,14 @@ import androidx.paging.cachedIn
 import com.ba6ba.sadapaycasestudy.R
 import com.ba6ba.sadapaycasestudy.home.data.HomeItemUiData
 import com.ba6ba.sadapaycasestudy.home.domain.HomeUseCase
-import com.ba6ba.sadapaycasestudy.managers.ViewState
 import com.ba6ba.sadapaycasestudy.managers.LightDarkModeManager
 import com.ba6ba.sadapaycasestudy.managers.UiError
+import com.ba6ba.sadapaycasestudy.managers.ViewState
 import com.ba6ba.sadapaycasestudy.managers.default
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -60,11 +60,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun processCombinedStates(combinedLoadStates: CombinedLoadStates) {
-        when (val state = combinedLoadStates.refresh) {
-            is LoadState.Loading -> _viewStateFlow.value = ViewState.Loading
-            is LoadState.Error -> _viewStateFlow.value =
+        _viewStateFlow.value = when (val state = combinedLoadStates.refresh) {
+            is LoadState.Loading -> ViewState.Loading
+            is LoadState.Error ->
                 ViewState.Error(UiError(message = state.error.message.default))
-            is LoadState.NotLoading -> _viewStateFlow.value = ViewState.Success(Unit)
+            is LoadState.NotLoading -> ViewState.Success(Unit)
         }
     }
 }
