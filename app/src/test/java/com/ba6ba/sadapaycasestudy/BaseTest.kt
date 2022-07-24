@@ -33,5 +33,3 @@ abstract class BaseTest {
         Dispatchers.resetMain()
     }
 }
-
-suspend fun <T> Flow<T>.collectToList(take: Int): List<T> = take(take).toList()
