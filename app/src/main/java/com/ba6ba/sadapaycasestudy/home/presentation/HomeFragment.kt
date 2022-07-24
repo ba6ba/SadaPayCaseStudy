@@ -23,7 +23,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeViewModel.setPersistedDisplayMode()
         setBindingVariables()
+        listenAdapterUpdates()
+    }
+
+    private fun listenAdapterUpdates() {
         lifecycleScope.launch {
             homeViewModel.collectPagingData().collectLatest { pagingData ->
                 homeItemAdapter.submitData(pagingData)

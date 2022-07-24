@@ -1,5 +1,6 @@
 package com.ba6ba.sadapaycasestudy.home.presentation
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.CombinedLoadStates
@@ -37,14 +38,10 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(R.drawable.ic_day_mode)
     }
 
-    init {
-        setPersistedDisplayMode()
-    }
-
     fun collectPagingData(): Flow<PagingData<HomeItemUiData>> =
         homeUseCase(Unit).cachedIn(viewModelScope)
 
-    private fun setPersistedDisplayMode() {
+    fun setPersistedDisplayMode() {
         lightDarkModeManager.setCurrentMode()
         updateDayNightIcon()
     }
