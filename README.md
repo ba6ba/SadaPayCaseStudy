@@ -73,3 +73,8 @@ list of repositories in RecyclerView with Paging3 library in case of success res
 is in data layer. Error screen shown if any sort of error occurs from network. Shimmer layout is used
 to show while api is calling. Each cell shows repo name, description, language, stars count and
 watches count. Dark mode is also integrated in this application.
+
+## App Glimpse
+![Repositories in Day mode](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/day_mode_listing.png)
+![Repositories in Night mode](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/night_mode_listing.png)
+![Error Screen](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/error_screen.png)
