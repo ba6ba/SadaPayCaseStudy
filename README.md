@@ -1,4 +1,4 @@
-# SadaPay Case Study
+# Trending GitHub Reops
 
 ## Objective
 The goal of this assignment is to build a simple single-screen app that shows the current
@@ -75,6 +75,6 @@ to show while api is calling. Each cell shows repo name, description, language, 
 watches count. Dark mode is also integrated in this application.
 
 ## App Glimpse
-![Repositories in Day mode](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/day_mode_listing.png)
-![Repositories in Night mode](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/night_mode_listing.png)
-![Error Screen](https://github.com/ba6ba/SadaPayCaseStudy/blob/master/docs/assets/error_screen.png)
+![Repositories in Day mode](https://github.com/ba6ba/Trending-GitHub-Repos/blob/master/docs/assets/day_mode_listing.png)
+![Repositories in Night mode](https://github.com/ba6ba/Trending-GitHub-Repos/blob/master/docs/assets/night_mode_listing.png)
+![Error Screen](https://github.com/ba6ba/Trending-GitHub-Repos/blob/master/docs/assets/error_screen.png)
